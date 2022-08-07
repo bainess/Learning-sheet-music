@@ -44,7 +44,9 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
     font-family: "Underdog";
     src: url(../../assets/fonts/Underdog-Regular.ttf);
 }
-
+a:visited, a:focus{
+    color: black;
+}
 .wrapper{
     margin: 0rem auto;
     width: 60%
