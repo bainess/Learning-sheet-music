@@ -134,6 +134,3 @@ function createKeyboard (){
 }
 if (trebleKey || bassKey) createKeyboard()
 
-function showKeyPressed (hovered){
-    for 
-}
