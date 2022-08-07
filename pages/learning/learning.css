@@ -1,0 +1,554 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before, *:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,:active{outline:none;}
+a:focus, a:active{outline:none;}
+    
+nav,footer,header,aside{display: block;}
+    
+html, body{
+    height: 100%;
+    width:100%;
+    font-size:100%;
+    line-height:1;
+    font-size: 1vmax;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input, button, textarea{font-family: inherit;}
+    
+input:-ms-clear{display: none;}
+button {cursor: pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+    
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+    
+/*................................*/
+@font-face {
+    font-family: "Comforter";
+    src: url(../../assets/fonts/Comforter-Regular.ttf);
+}
+@font-face {
+    font-family: "Underdog";
+    src: url(../../assets/fonts/Underdog-Regular.ttf);
+}
+
+.wrapper{
+    margin: 0rem auto;
+    width: 60%
+}
+section{
+    margin-top: 0rem;
+}
+section._active{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+}
+h1{
+    margin-top: 1rem;
+    font-family: Comforter;
+    font-size: 10em;
+    text-align: center;
+}
+h1._active{
+    margin-top: 0;
+    position: absolute;
+    font-size: 3rem;
+    top:10px;
+}
+nav ul{
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+nav ul._active{
+    margin: 4rem 0 2rem 0;
+}
+nav ul li{
+    width: 40%;
+    text-align: center;
+    border: 2px solid rgb(190,190,190);
+    border-radius: 20px;
+    height: 15rem;
+}
+nav ul li._active{
+    height: 5rem;
+}
+p{
+    font-family: Underdog;
+    font-size: 3vw;
+    margin-top: 6rem;
+}
+#treble{
+    margin-top: 4.5rem;
+}
+#treble._active{
+    margin-top: 1.5rem;
+}
+p._active{
+    margin-top: 1.5rem;
+    font-size: 2vmax;
+}
+nav ul li:hover{
+    cursor: pointer;
+    background-color: rgb(190,190,190);
+}
+nav ul li:active{
+    cursor: pointer;
+    background-color: rgb(176,176,176);
+}
+nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
+    color:black;
+}
+.treble-keys, .bass-keys{
+    display: none;
+}
+.treble-keys._show, .bass-keys._show{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    column-gap: 1rem;
+    position: relative;
+}
+.treble-keys._show{
+    justify-content:flex-end;
+}
+.keys{
+    position: relative;
+}
+.bass-keys._show div{
+    width: 11%;
+    line-height: 1rem;
+}
+.octava__button{
+    width: 10%;
+    height: 2.5rem;
+    background-color: 	rgb(220,220,220);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}  
+#octava1{
+    line-height: initial;
+}  
+.octava__button:hover{
+    cursor: pointer;
+    background-color:rgb(185,185,185);
+}
+.octava__button:active, .octava__button:focus{
+    background-color: rgb(200,200,200);
+}
+.octava__button.colour{
+    background-color:rgb(176,176,176) ;
+}
+#label__block{
+    width: 700px;
+    height: 5rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+}
+.img_bass_partiture{
+    margin-top: 4rem;
+    display: none;
+}
+.shade__left{
+    display: none;
+    position: absolute;
+    opacity: 0.5;
+    height: 10rem;
+    
+    background-color: white;
+}
+.shade__right{
+    display: none;
+    position: absolute;
+    opacity: 0.5;
+    height: 10rem;
+    background-color: white;
+} 
+.img__bass__partiture._show-SCO{
+    position: relative;
+    top:1rem;
+    width: 700px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/);
+    display: block;
+}
+.img__bass__partiture._show-CO{
+    position: relative;
+    top:1rem;
+    width: 700px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/basskey_sucontraoctave_resize.png);
+    display: block;
+}
+.img__bass__partiture._show-GO{
+    position: relative;
+    top:1rem;
+    width: 700px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/basskey_greatoctave_resize.JPG);
+    display: block;
+}
+.img__bass__partiture._show-SO{
+    position: relative;
+    top:1rem;
+    width: 700px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/basskey_smalloctave_resize.png);
+    display: block;
+}
+.img__bass__partiture._show-FO{
+    position: relative;
+    top:1rem;
+    width: 700px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/basskey_firstoctave_resize.png);
+    display: block;
+}
+.shade__left.do{
+    display: block;
+    width: 5.7rem;
+}
+.shade__right.do{
+    left:10.5rem;
+    width: 50rem;
+    display: block;
+}
+.shade__left.re{
+    width: 13.5rem;
+    display: block;
+}
+.shade__right.re{
+    left:18.3rem;
+    width: 46rem;
+    display: block;
+}
+.shade__left.mi{
+    width: 21rem;
+    display: block;
+}
+.shade__right.mi{
+    left:25.5rem;
+    width: 46rem;
+    display: block;
+}
+.shade__left.fa{
+    width: 28rem;
+    display: block;
+}
+.shade__right.fa{
+    left:33rem;
+    width: 36rem;
+    display: block;
+}
+.shade__left.sol{
+    width: 35.5rem;
+    display: block;
+}
+.shade__right.sol{
+    left:40.5rem;
+    width: 36rem;
+    display: block;
+}
+.shade__left.la{
+    width: 43rem;
+    display: block;
+}
+.shade__right.la{
+    left:47.5rem;
+    width: 36rem;
+    display: block;
+}
+.shade__left.si{
+    width: 51.5rem;
+    display: block;
+    
+}
+.shade__right.si{
+    left:56rem;
+    width: 36rem;
+    display: block;
+}
+.note{
+    display:none;
+}
+.note._show{
+    display: block;
+}
+#note-do{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 6vmax;
+
+}
+#note-re{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 13vmax;
+
+}
+#note-mi{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 20vmax;
+
+}
+#note-fa{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 27vmax;
+
+}
+#note-sol{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 35vmax;
+
+}
+#note-la{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 43vmax;
+
+} 
+.keyboard{
+    width: 59vmax;
+    height: 10rem;
+    
+}
+#keyboard{
+    width: 100%;
+    height:100%;
+    position: relative;
+}
+.white-keys__block{
+    display: flex;
+    flex-direction: row;
+}
+.white-keys{
+    width: 1.11rem;
+    height: 7rem;
+    border: 1px solid rgb(0, 0, 0);
+}
+.white-keys._pressed{
+    background-color:blueviolet;
+    box-shadow: 0 0 8px blueviolet;
+}   
+.black-keys__block{
+    position: absolute;
+    top:0px;
+    left: 0.8rem;
+    display: flex;
+    flex-direction: row;
+}
+.black-keys{
+    position: relative;
+    width: 0.6rem;
+    height: 5rem;
+    background-color:black;
+}
+#key-54{
+    position: absolute;
+    top:0px;
+    left: 2.25rem;
+}
+
+#key-55{
+    position: absolute;
+    top:0px;
+    left: 3.33rem;
+}
+#key-56{
+    position: absolute;
+    top:0px;
+    left:5.6rem;
+}
+#key-57{
+    position: absolute;
+    top:0px;
+    left: 6.7rem;
+}
+#key-58{
+    position: absolute;
+    top:0px;
+    left: 7.75rem;
+}
+#key-59{
+    position: absolute;
+    top:0px;
+    left: 10rem;
+}
+#key-60{
+    position: absolute;
+    top:0px;
+    left: 11.12rem;
+}
+#key-61{
+    position: absolute;
+    top:0px;
+    left: 13.33rem
+}
+#key-62{
+    position: absolute;
+    top:0px;
+    left: 14.4rem;
+}
+#key-63{
+    position: absolute;
+    top:0px;
+    left: 15.55rem;
+}
+#key-64{
+    position: absolute;
+    top:0px;
+    left: 17.75rem;
+}
+#key-65{
+    position: absolute;
+    top:0px;
+    left:18.8rem;
+}
+#key-66{
+    position: absolute;
+    top:0px;
+    left: 21.15rem;
+}
+#key-67{
+    position: absolute;
+    top:0px;
+    left:22.15rem;
+}
+#key-68{
+    position: absolute;
+    top:0px;
+    left:23.32rem;
+}
+#key-69{
+    position: absolute;
+    top:0px;
+    left:25.5rem;
+}
+#key-70{
+    position: absolute;
+    top:0px;
+    left:26.65rem;
+}
+#key-71{
+    position: absolute;
+    top:0px;
+    left:28.85rem;
+}
+#key-72{
+    position: absolute;
+    top:0px;
+    left:30rem;
+}
+#key-73{
+    position: absolute;
+    top:0px;
+    left: 31.05rem
+}
+#key-74{
+    position: absolute;
+    top:0px;
+    left:33.28rem;
+}
+#key-75{
+    position: absolute;
+    top:0px;
+    left: 34.4rem;
+}
+#key-76{
+    position: absolute;
+    top:0px;
+    left: 36.59rem;
+}
+#key-77{
+    position: absolute;
+    top:0px;
+    left:37.75rem;
+}
+#key-78{
+    position: absolute;
+    top:0px;
+    left: 38.8rem;
+}
+#key-79{
+    position: absolute;
+    top:0px;
+    left:41.07rem;
+}
+#key-80{
+    position: absolute;
+    top:0px;
+    left:42.15rem;
+}
+#key-81{
+    position: absolute;
+    top:0px;
+    left: 44.43rem;
+}
+#key-82{
+    position: absolute;
+    top:0px;
+    left:45.5rem;
+}
+#key-83{
+    position: absolute;
+    top:0px;
+    left:46.6rem;
+}
+#key-84{
+    position: absolute;
+    top:0px;
+    left: 48.8rem;
+}
+#key-85{
+    position: absolute;
+    top:0px;
+    left:49.9rem;
+}
+#key-86{
+    position: absolute;
+    top:0px;
+    left:52.16rem;
+}
+#key-87{
+    position: absolute;
+    top:0px;
+    left:53.2rem;
+}
+#key-88{
+    position: absolute;
+    top:0px;
+    left:54.3rem;
+}

@@ -1,0 +1,89 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before, *:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,:active{outline:none;}
+a:focus, a:active{outline:none;}
+    
+nav,footer,header,aside{display: block;}
+    
+html, body{
+    /* height: 100%; */
+    width:100%;
+    font-size:100%;
+    line-height:1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input, button, textarea{font-family: inherit;}
+    
+input:-ms-clear{display: none;}
+button {cursor: pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a,a:visited{text-decoration:none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+    
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+    
+/*................................*/
+@font-face {
+    font-family: "Comforter";
+    src: url(../../assets/fonts/Comforter-Regular.ttf);
+}
+@font-face {
+    font-family: "Underdog";
+    src: url(../../assets/fonts/Underdog-Regular.ttf);
+}
+section{
+    margin: 5rem auto;
+    width: 80%
+}
+h1{
+    
+    font-family: Comforter;
+    font-size: 10em;
+    text-align: center;
+}
+nav ul{
+    width: 100%;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+nav ul a{
+    width: 30%;
+    text-align: center;
+    border: 2px solid rgb(190,190,190);
+    border-radius: 20px;
+    height: 15rem;
+}
+p{
+    font-family: Underdog;
+    font-size: 3rem;
+    margin-top: 6rem;
+}
+#playing_music p{
+    margin-top: 4.5rem;
+}
+nav ul a:hover{
+    cursor: pointer;
+    background-color: rgb(190,190,190);
+}
+nav ul a:active{
+    cursor: pointer;
+    background-color: rgb(176,176,176);
+}
+nav ul a, nav ul a:visited, nav ul a:focus, nav ul a:focus-within{
+    color:black;
+}
