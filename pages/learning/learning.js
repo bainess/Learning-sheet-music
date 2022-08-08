@@ -1,9 +1,11 @@
+'use strict'
 
 const trebleKey = document.getElementById('treble-li');
 const bassKey = document.getElementById('bass-li');
 
 let selectedOctave = "";
-
+let selectedNote = "";
+let selectedKey = "";
 function openPartiture (clicked, type) {
     const pageTitle = document.querySelector('h1');
     const paragraph = document.querySelectorAll('p'); 
@@ -12,6 +14,7 @@ function openPartiture (clicked, type) {
     const octavaTrebleShow = document.querySelector('div.treble-keys'); 
     const octavaBassShow = document.querySelector('div.bass-keys');
     clicked.addEventListener('click', function(e){
+        selectedKey = type; 
         pageTitle.classList.add('_active');
         for (let node of paragraph){
             node.classList.add('_active');
@@ -28,45 +31,44 @@ function openPartiture (clicked, type) {
             octavaTrebleShow.classList.remove('_show');
         }
     });
+    
 }
 
-if (trebleKey)openPartiture(trebleKey, 'treble');
-if (bassKey)openPartiture(bassKey, 'bass');
+if (trebleKey) openPartiture(trebleKey, 'treble');
+if (bassKey) openPartiture(bassKey, 'bass');
 
-const octaveButtonsArray = document.getElementsByClassName('octava__button');
-function switchOctaves (clicked){
-    const imgOctavaSubContra = document.getElementById('img-bass-partiture-controctave');
+const setOctave = (octaveId) => {
     const octaveButtonsIds = [...document.getElementsByClassName('octava__button')].map(el => el.id);
-    const octaveName = clicked.id; 
-    
-    clicked.addEventListener('click', function (e){
-        let notesArray = [...document.getElementsByClassName("note")].forEach(el => el.classList.add('_show'));
+    const imgOctavaSubContra = document.getElementById('img-bass-partiture-controctave');
 
         octaveButtonsIds.forEach(id => imgOctavaSubContra.classList.remove(`_show-${id}`));
-        imgOctavaSubContra.classList.add(`_show-${octaveName}`);
-        selectedOctave = clicked.id;
+        imgOctavaSubContra.classList.add(`_show-${octaveId}`);
+        selectedOctave = octaveId;
         console.log(selectedOctave);
         [...octaveButtonsArray].forEach((el) => {
-            if(el.id !== clicked.id) {
+            if(el.id !== octaveId) {
                 el.classList.remove('colour')
+            } else {
+                el.classList.add('colour')
             }
         })
-        clicked.classList.add('colour');
+}
+
+const octaveButtonsArray = document.getElementsByClassName('octava__button');
+function switchOctaves(clicked){
+    clicked.addEventListener('click', function (e){
+        setOctave(clicked.id)
     })
 } 
-for (octaveName of octaveButtonsArray) {
+for (let octaveName of octaveButtonsArray) {
     switchOctaves(octaveName);
 } 
-// if (buttonOctavaContra)switchOctaves(buttonOctavaContra);
-
-// octaveButtonsArray.addEventListener('click', function(clicked){
-//     clicked.style.backgro
-// })
 
 let showNoteDo = document.getElementById('note-do');
 const notesArray = document.getElementsByClassName('note');
 
 function openOctavaImg (hover) {
+    [...document.getElementsByClassName("note")].forEach(el => el.classList.add('_show'));
     const shadeLeft = document.getElementById('shade-left');
     const shadeRight = document.getElementById('shade-right');
     const noteName = hover.id.substr(5)
@@ -81,25 +83,34 @@ function openOctavaImg (hover) {
         shadeRight.classList.remove(noteName);
     })
 }
-const labelNote = document.getElementById('label__block');
-function showNoteLabel (hovered){
+
+
+const createNoteLabel = (noteNamePic) => {
+    console.log(noteNamePic)
+    const labelNote = document.getElementById('label__block');
     const noteNamesArray = {'do':'ДО', 're':'РЕ', 'mi': 'МИ', 'fa':'ФА', 'sol':'СОЛЬ', 'la': 'ЛЯ', 'si':'СИ'};
-    hovered.addEventListener('mouseover', function(e){
-        const noteNamePic = hovered.id.substr(5);
-        const noteName = document.createElement("div");
-        noteName.id = 'note-name';
-        noteName.innerText = noteNamesArray[noteNamePic] || "";
-        labelNote.append(noteName);
-    })
-    hovered.addEventListener('mouseleave', function(e){
-        const noteName = document.getElementById('note-name');
-        noteName.remove()
-    })
+    selectedNote = noteNamePic;
+    const noteName = document.createElement("div");
+    noteName.id = 'note-name';
+    noteName.innerText = noteNamesArray[noteNamePic] || "";
+    labelNote.append(noteName);
 }
 
-for(noteElement of notesArray) {
-    openOctavaImg(noteElement)
-    showNoteLabel(noteElement)
+const hideNoteLabel = () => {
+    const noteName = document.getElementById('note-name');
+    if(noteName) noteName.remove()
+}
+
+function showNoteLabel(hovered) {
+    const _noteNamePic = hovered.id.substr(5);
+
+    hovered.addEventListener('mouseover', function(e) {
+        hideNoteLabel();
+        createNoteLabel(_noteNamePic)
+    })
+    hovered.addEventListener('mouseleave', function(e){
+        hideNoteLabel()
+    })
 }
 
 const keysNames = {
@@ -108,15 +119,14 @@ const keysNames = {
     GO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     SO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     FO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
-    SecondO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
-    ThirdO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
-    FourthO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do5'],
-
+    TSecond: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
+    TThird: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
+    TFourth: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do5'],
 }
 
 function createKeyboard (){
     const keyboardFrameWhite = document.getElementById('white-keys__block');
-    for (key in keysNames){
+    for (let key in keysNames){
         keysNames[key].forEach((e) =>{
             let keyWhite = document.createElement('div');
             keyWhite.classList.add('white-keys');
@@ -134,3 +144,72 @@ function createKeyboard (){
 }
 if (trebleKey || bassKey) createKeyboard()
 
+function showNoteHovered(hovered) {
+    hovered.addEventListener('mouseover', () => {
+        if(selectedOctave && selectedNote) {
+            const key = document.getElementById(`${selectedOctave} ${selectedNote}`);
+            key.classList.add('_pressed');
+        }
+    })
+    hovered.addEventListener('mouseleave', () => {
+        if(selectedOctave && selectedNote) {
+            const key = document.getElementById(`${selectedOctave} ${selectedNote}`);
+            key.classList.remove('_pressed');
+        }
+    })
+}
+
+for(let noteElement of notesArray) {
+    openOctavaImg(noteElement)
+    showNoteLabel(noteElement)
+    showNoteHovered(noteElement)
+}
+
+let keysWhite = document.getElementsByClassName('white-keys');
+function showNotePressed(pressed){
+    const shadeLeft = document.getElementById('shade-left');
+    const shadeRight = document.getElementById('shade-right');
+    const notesList = document.getElementsByClassName('note');
+    
+    function getNoteName(name) {
+        let index = name.indexOf(' ');
+        return name.substr(index+1);
+    }
+    function getOctaveName(name) {
+        let index = name.indexOf(' ');
+        return name.substr(0, index);
+    }
+
+    let octaveName = getOctaveName(pressed.id);
+    let noteName = getNoteName(pressed.id);
+
+    pressed.addEventListener('mousedown', function(e) {
+        // selectedKey
+        const pressKey = () => {
+            if (selectedOctave) pressed.classList.add('_pressed');
+        shadeLeft.classList.add(noteName);
+        shadeRight.classList.add(noteName);
+        setOctave(octaveName)
+        hideNoteLabel()
+        createNoteLabel(noteName)
+        }
+        if(['SCO', 'CO', 'GO'].includes(octaveName)) {
+            if(selectedKey === 'bass') {
+                pressKey()
+            }
+        } else if(['TSecond', 'TThird', 'TFourth'].includes(octaveName)) {
+            if(selectedKey === 'treble') {
+                pressKey()
+            }
+        } else {
+            pressKey()
+        }
+    })
+    pressed.addEventListener('mouseup', function(e){
+        if(selectedOctave) pressed.classList.remove('_pressed');
+        shadeLeft.classList.remove(noteName);
+        shadeRight.classList.remove(noteName);
+    })
+}
+for (let key of keysWhite) showNotePressed(key)
+console.log(selectedOctave)

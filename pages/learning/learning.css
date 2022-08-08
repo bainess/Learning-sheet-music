@@ -189,7 +189,7 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
 .img__bass__partiture._show-SCO{
     position: relative;
     top:1rem;
-    width: 700px;
+    width: 900px;
     height: 200px;
     display: block;
     background: no-repeat   url(../../assets/images/);
@@ -198,7 +198,7 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
 .img__bass__partiture._show-CO{
     position: relative;
     top:1rem;
-    width: 700px;
+    width: 900px;
     height: 200px;
     display: block;
     background: no-repeat   url(../../assets/images/basskey_sucontraoctave_resize.png);
@@ -207,7 +207,7 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
 .img__bass__partiture._show-GO{
     position: relative;
     top:1rem;
-    width: 700px;
+    width: 900px;
     height: 200px;
     display: block;
     background: no-repeat   url(../../assets/images/basskey_greatoctave_resize.JPG);
@@ -216,7 +216,7 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
 .img__bass__partiture._show-SO{
     position: relative;
     top:1rem;
-    width: 700px;
+    width: 900px;
     height: 200px;
     display: block;
     background: no-repeat   url(../../assets/images/basskey_smalloctave_resize.png);
@@ -225,10 +225,60 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
 .img__bass__partiture._show-FO{
     position: relative;
     top:1rem;
-    width: 700px;
+    width: 900px;
     height: 200px;
     display: block;
     background: no-repeat   url(../../assets/images/basskey_firstoctave_resize.png);
+    display: block;
+}
+.img__bass__partiture._show-TSO{
+    position: relative;
+    top:1rem;
+    width: 810px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/treblekey_smalloctave.png);
+    background-size: contain;
+    display: block;
+}
+.img__bass__partiture._show-TFirst{
+    position: relative;
+    top:1rem;
+    width: 810px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/basskey_firstoctave_resize.png);
+    background-size: contain;
+    display: block;
+}
+.img__bass__partiture._show-TSecond{
+    position: relative;
+    top:1rem;
+    width: 810px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/treblekey_secondoctave.png);
+    background-size: contain;
+    display: block;
+}
+.img__bass__partiture._show-TThird{
+    position: relative;
+    top:1rem;
+    width: 810px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/treblekey_thirdoctave.png);
+    background-size: contain;
+    display: block;
+}
+.img__bass__partiture._show-TFourth{
+    position: relative;
+    top:1rem;
+    width: 810px;
+    height: 200px;
+    display: block;
+    background: no-repeat   url(../../assets/images/treblekey_fourthoctave.png);
+    background-size: contain;
     display: block;
 }
 .shade__left.do{
@@ -286,12 +336,11 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
     display: block;
 }
 .shade__left.si{
-    width: 51.5rem;
+    width: 50.5rem;
     display: block;
-    
 }
 .shade__right.si{
-    left:56rem;
+    left:55rem;
     width: 36rem;
     display: block;
 }
@@ -342,6 +391,12 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
     position: absolute;
     left: 43vmax;
 
+} 
+#note-si{
+    width: 5vmax;
+    height: 10vmax;
+    position: absolute;
+    left: 51vmax;
 } 
 .keyboard{
     width: 59vmax;
