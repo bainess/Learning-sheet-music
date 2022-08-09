@@ -6,6 +6,7 @@ const bassKey = document.getElementById('bass-li');
 let selectedOctave = "";
 let selectedNote = "";
 let selectedKey = "";
+
 function openPartiture (clicked, type) {
     const pageTitle = document.querySelector('h1');
     const paragraph = document.querySelectorAll('p'); 
@@ -43,7 +44,13 @@ const setOctave = (octaveId) => {
 
         octaveButtonsIds.forEach(id => imgOctavaSubContra.classList.remove(`_show-${id}`));
         imgOctavaSubContra.classList.add(`_show-${octaveId}`);
-        selectedOctave = octaveId;
+        if (octaveId == 'SO' || octaveId == "TSO") { 
+            selectedOctave = 'SmallOctave'
+        } else if (octaveId == 'FO' || octaveId == 'TFirst') {
+            selectedOctave = 'FirstOctave' 
+        } else {
+            selectedOctave = octaveId;
+        }
         console.log(selectedOctave);
         [...octaveButtonsArray].forEach((el) => {
             if(el.id !== octaveId) {
@@ -117,8 +124,8 @@ const keysNames = {
     SCO: ['la', 'si'],
     CO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     GO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
-    SO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
-    FO: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
+    SmallOctave: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
+    FirstOctave: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     TSecond: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     TThird: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si'],
     TFourth: ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do5'],
@@ -186,10 +193,23 @@ function showNotePressed(pressed){
     pressed.addEventListener('mousedown', function(e) {
         // selectedKey
         const pressKey = () => {
-            if (selectedOctave) pressed.classList.add('_pressed');
+        if (selectedOctave) pressed.classList.add('_pressed');
         shadeLeft.classList.add(noteName);
         shadeRight.classList.add(noteName);
-        setOctave(octaveName)
+        let actualOctaveName = octaveName;
+        if(octaveName === "SmallOctave" && selectedKey === "bass") {
+            actualOctaveName = "SO"
+        }
+        if(octaveName === "SmallOctave" && selectedKey === "treble") {
+            actualOctaveName = "TSO"
+        }
+        if(octaveName === "FirstOctave" && selectedKey === "bass") {
+            actualOctaveName = "FO"
+        }
+        if(octaveName === "FirstOctave" && selectedKey === "treble") {
+            actualOctaveName = "TFirst"
+        }
+        setOctave(actualOctaveName)
         hideNoteLabel()
         createNoteLabel(noteName)
         }
@@ -203,13 +223,14 @@ function showNotePressed(pressed){
             }
         } else {
             pressKey()
-        }
-    })
-    pressed.addEventListener('mouseup', function(e){
+        }  
+        pressed.addEventListener('mouseup', function(e){
         if(selectedOctave) pressed.classList.remove('_pressed');
         shadeLeft.classList.remove(noteName);
         shadeRight.classList.remove(noteName);
-    })
+    });
 }
-for (let key of keysWhite) showNotePressed(key)
-console.log(selectedOctave)
+    )}
+
+
+for (let key of keysWhite) showNotePressed(key);

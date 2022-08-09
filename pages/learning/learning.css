@@ -247,7 +247,7 @@ nav ul li, nav ul li:visited, nav ul li:focus, nav ul a:focus-within{
     width: 810px;
     height: 200px;
     display: block;
-    background: no-repeat   url(../../assets/images/basskey_firstoctave_resize.png);
+    background: no-repeat   url(../../assets/images/treblekey_firstoctave.png);
     background-size: contain;
     display: block;
 }
