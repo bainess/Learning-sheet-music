@@ -228,6 +228,7 @@ function showNotePressed(pressed){
         if(selectedOctave) pressed.classList.remove('_pressed');
         shadeLeft.classList.remove(noteName);
         shadeRight.classList.remove(noteName);
+        hideNoteLabel()
     });
 }
     )}
